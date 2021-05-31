@@ -33,8 +33,7 @@ const formSubmit = () => {
                 return SendPostRequest ('POST', '/api/order', jsonData, { 'Content-Type': 'application/json' });
 
             }).then ((response) => {
-                console.log ('the final response is');
-                console.log (response);
+                window.location.href = '/api/success';
             }).catch ((error) => {
                 $('#error').text = error.message;
             })

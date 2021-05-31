@@ -2,7 +2,7 @@
 
 
 // defining the SendPostRequest function
-const SendPostRequest = async (method, url, data, headers) => {
+const SendPostRequest = (method, url, data, headers) => {
 
     axios (
         {
