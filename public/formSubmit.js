@@ -1,5 +1,6 @@
 
 import { StripeConfig } from './StripeConfig.js';
+import { SendPostRequest } from './HandleRequest.js';
 
 /*
     important: I we make use of different instance of Stripe to generate token
@@ -24,7 +25,15 @@ const formSubmit = () => {
                 if (response.error) {
                     throw new Error (response.error.message)
                 }
-                console.log ('The token response is');
+
+                // adding the response.token into the jsonData
+                jsonData.token = response.token;
+
+                // sending the jsonData to '/order' endpoint
+                return SendPostRequest ('POST', '/api/order', jsonData, { 'Content-Type': 'application/json' });
+
+            }).then ((response) => {
+                console.log ('the final response is');
                 console.log (response);
             }).catch ((error) => {
                 $('#error').text = error.message;
